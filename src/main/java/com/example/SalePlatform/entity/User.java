@@ -1,12 +1,10 @@
 package com.example.SalePlatform.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,9 +25,12 @@ public class User {
 
 	public User() {
 	}
-//
-//	@OneToMany(mappedBy = "user")
-//	private List<Item> items = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<Product> products = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private Set<Sale> sales = new HashSet<Sale>();
 
 	public User(String email, String password, String firstName, String lastName) {
 		this.email = email;
@@ -78,13 +79,21 @@ public class User {
 		this.lastName = lastName;
 	}
 
-//	public List<Item> getItems() {
-//		return items;
-//	}
-//
-//	public void setItems(List<Item> items) {
-//		this.items = items;
-//	}
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> items) {
+		this.products = items;
+	}
+
+	public Set<Sale> getSales() {
+		return sales;
+	}
+
+	public void setSales(Set<Sale> sales) {
+		this.sales = sales;
+	}
 
 	@Override
 	public String toString() {

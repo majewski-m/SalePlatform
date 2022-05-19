@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container text-center">
+	<div>
+		<h1 class="mt-5">SALE PLATFORM</h1>
+	</div>
+	<form th:action="@{/sale/showFormForAdd}">
+		<button type="submit" class="btn btn-primary">Add item</button>
+	</form>
+	<table class="table table-bordered" style="float: left;">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Created</th>
+			<th>End Date</th>
+			<th>Action</th>
+		</tr>
+		<tbody>
+
+
+		<tr th:each="product : ${products}">
+
+			<td th:text="${product.id}"></td>
+			<td th:text="${product.name}"></td>
+			<td th:text="${product.description}"></td>
+			<td th:text="${product.price}"></td>
+			<td th:text="${product.quantity}"></td>
+			<td th:text="${#temporals.format(product.createdAt, 'dd.MM.yyyy HH:mm')}"></td>
+			<td th:text="${#temporals.format(product.endDate, 'dd.MM.yyyy')}"></td>
+<!--			<td>-->
+<!--				<a th:href="@{/showFormForUpdate(id=${todoItem.id})}" class="btn btn-primary">-->
+<!--					Update-->
+<!--				</a>-->
+<!--				<a th:href="@{/delete(id=${todoItem.id})}"-->
+<!--				   onclick="if (!(confirm('Are you sure you want to delete this item?'))) return false"-->
+<!--				   class="btn btn-warning">-->
+<!--					Delete-->
+<!--				</a>-->
+<!--			</td>-->
+
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+</body>
+</html>
