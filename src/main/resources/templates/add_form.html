@@ -8,47 +8,33 @@
 <body>
 
 <div class="container">
-
-	<form th:action="@{/sale/save}" th:object="${product}" method="POST" style="max-width: 600px; margin: 0 auto;">
-
+	<form th:action="@{/sale/save}" th:object="${product}" method="POST" enctype="multipart/form-data"
+		  style="max-width: 600px; margin: 0 auto;">
 		<input type="hidden" th:field="*{id}"/>
-
 		<div class="form-group row m-3">
-			<!--			<label class="col-form-label col-4">Name</label>-->
-			<!--			<div class="col-8">-->
-			<!--				<input type="text" class="form-control" name="name" required minlength="1" maxlength="50">-->
-			<!--			</div>-->
-			<!--		</div>-->
-
-			<!--		<div class="form-group row m-3">-->
-			<!--			<label class="col-form-label col-4">Description</label>-->
-			<!--			<div class="col-8">-->
-			<!--				<input type="textArea" class="form-control" name="name" required minlength="1" maxlength="50">-->
-			<!--			</div>-->
-			<!--		</div>-->
 			<div class="mb-3">
 				<label for="inputName" class="form-label">Name</label>
-				<input type="text" class="form-control" id="inputName" name="name" placeholder="Name">
+				<input type="text" class="form-control" id="inputName" name="name" placeholder="Name" required>
 			</div>
 			<div class="mb-3">
 				<label for="inputDescription" class="form-label">Description</label>
-				<input type="text" class="form-control" id="inputDescription" name="description" placeholder="Description">
+				<textarea rows="5" class="form-control" id="inputDescription" name="description" placeholder="Description" required></textarea>
 			</div>
-<!--			<div class="mb-3">-->
-<!--				<label for="inputDescription" class="form-label">Description</label>-->
-<!--				<textarea class="form-control" id="inputDescription" rows="3" placeholder="Description"></textarea>-->
-<!--			</div>-->
 			<div class="mb-3">
 				<label for="inputPrice" class="form-label">Price</label>
-				<input type="number" step="0.01" class="form-control" id="inputPrice" name="price" placeholder="Price">
+				<input type="number" step="0.01" class="form-control" id="inputPrice" name="price" placeholder="Price" required>
 			</div>
 			<div class="mb-3">
 				<label for="inputQuantity" class="form-label">Quantity</label>
-				<input type="number" step="1" class="form-control" id="inputQuantity" name="quantity" placeholder="Quantity">
+				<input type="number" step="1" class="form-control" id="inputQuantity" name="quantity" placeholder="Quantity" required>
 			</div>
 			<div class="mb-3">
 				<label for="inputEndDate" class="form-label">End Date</label>
-				<input type="date" class="form-control" id="inputEndDate" name="endDate" placeholder="End Date">
+				<input type="date" class="form-control" id="inputEndDate" name="endDate" placeholder="End Date" required>
+			</div>
+			<div class="mb-3">
+				<label for="inputImage" class="form-label">Image</label>
+				<input type="file" accept="image/png, image/jpeg" class="form-control" id="inputImage" name="imageFile" placeholder="Image">
 			</div>
 			<input type="hidden" name="createdAt" th:value="${now}"/>
 			<input type="hidden" name="user" th:value="1"/> <!--TODO: Comment this, Comment out next one-->
@@ -56,7 +42,6 @@
 			<button type="submit">Save</button>
 		</div>
 	</form>
-
 	<hr>
 	<a th:href="@{/sale/main}">Back to the List</a>
 </div>
@@ -71,13 +56,6 @@ const tomorrow = () => {
   return d.toISOString().split('T')[0];
 };
 
-const fourWeeks = () => {
-  let d = new Date();
-  d.setDate(d.getDate() + 28);
-  return d.toISOString().split('T')[0];
-};
-
 inputEndDate.min = tomorrow();
-inputEndDate.max = fourWeeks();
 </script>
 </html>

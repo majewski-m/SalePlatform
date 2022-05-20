@@ -30,6 +30,8 @@ public class Product {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate endDate;
 
+	private String image;
+
 	@ManyToOne()
 	@JoinColumn(name = "seller_id")
 	private User user;
@@ -41,13 +43,15 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String name, String description, BigDecimal price, int quantity, LocalDateTime createdAt, LocalDate endDate, User user) {
+	public Product(String name, String description, BigDecimal price, int quantity, LocalDateTime createdAt,
+				   LocalDate endDate, String image, User user) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.quantity = quantity;
 		this.createdAt = createdAt;
 		this.endDate = endDate;
+		this.image = image;
 		this.user = user;
 	}
 
@@ -107,6 +111,14 @@ public class Product {
 		this.endDate = endDate;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -133,6 +145,7 @@ public class Product {
 				", quantity=" + quantity +
 				", createdAt=" + createdAt +
 				", endDate=" + endDate +
+				", image='" + image + '\'' +
 				", user=" + user +
 				", sales=" + sales +
 				'}';
